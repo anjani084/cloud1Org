@@ -1,0 +1,27 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+    <div class="slds-grid_align-center">
+        <div class="c-container">
+            <lightning:layout verticalAlign="space">
+                <lightning:layoutItem flexibility="auto" >
+                    <img src="https://myfirstsiteinlightning-developer-edition.ap8.force.com/resource/1554884416000/Picture1" data-aura-rendered-by="110:0"/>
+                </lightning:layoutItem>
+                <lightning:layoutItem flexibility="auto" padding="around-small">
+                   <h3>Fringilla Fermentum Tellus</h3>
+                   <br/>
+                   <h6>VEHICULA URNA SED JUSTO BIBENDUM</h6>
+                   <br/>
+                </lightning:layoutItem>
+                <lightning:layoutItem flexibility="auto" padding="around-small">
+                    
+                </lightning:layoutItem>
+                <lightning:layoutItem flexibility="auto" padding="around-small">
+                    
+                </lightning:layoutItem>
+            <lightning:layoutItem flexibility="auto" padding="around-small">
+                
+            </lightning:layoutItem>
+            </lightning:layout>
+        </div>
+        </div>
+
+</aura:component>

@@ -1,0 +1,8 @@
+<apex:page StandardController="Opportunity" extensions="VfPageOpportunityClosedWon">
+    <apex:form >
+        Enter Opportunity Id:
+        <apex:inputText value="{!oppName}"/>
+        <apex:commandButton action="{!VfPageOpportunityClosedWon}" value="Test"/>
+        <apex:commandButton value="{!stage}" rendered="{!Flag}"/>
+    </apex:form>
+</apex:page>

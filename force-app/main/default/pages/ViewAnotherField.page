@@ -1,0 +1,16 @@
+<apex:page controller="FillAutomaticaly">
+    <apex:form id="Id1">
+        <apex:inputField value="{!conName.FirstName}">
+            <apex:actionSupport event="onchange" action="{!automaticallyfillaccount}" rerender="Id2"/>
+        </apex:inputField>
+        
+    </apex:form>
+    <apex:form id="Id2">
+        <apex:inputText value="{!result}"/>
+        <p>
+            Hello world
+            {!result}
+        </p>
+    </apex:form>
+    {!result}
+</apex:page>

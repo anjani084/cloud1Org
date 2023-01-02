@@ -1,0 +1,11 @@
+<template>
+    <template if:true={showTabOne}>
+        <div class="editStartButton">
+            <lightning-button variant="brand" label="Start Chat" title="Primary action" onclick={handleClicktabone}
+                class="slds-m-left_x-small"></lightning-button>
+        </div>
+</template>
+<template if:true={showWebChat}>
+    <c-webchatdemo></c-webchatdemo>
+</template>
+    </template>

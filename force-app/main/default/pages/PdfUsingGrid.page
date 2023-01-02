@@ -1,0 +1,25 @@
+<apex:page renderAs="pdf" >
+    <html>
+        <head>
+           <title>Pdf Using Grid</title> 
+        </head>
+        <body>
+            <div class="grid-container">
+                <div class="grid-item;grid-row:1/2" style="text-align:left;color:blue"><h3>
+                   CLOUD ANALOGY </h3></div>
+            </div >
+            <div class="grid-container;grid-row:1/2" >
+                <h1 style="color:blue;padding-top:0px;text-align:right">
+                    INVOICE
+                </h1>
+            </div>
+            <div class="grid-container">
+                <p>
+                     A-17 GF,near Birlasoft,sector 63 <br/>
+                     NOIDA <br/>
+                     9875648265<br/>
+                </p>
+            </div>
+        </body>
+    </html>
+</apex:page>

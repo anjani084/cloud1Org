@@ -1,0 +1,13 @@
+<apex:page standardcontroller="Contact">
+    <apex:form >
+        <apex:pageblock title="Contact creation" id="Contact_List">
+            <apex:pageBlockTable value="{!Contact}" var="each">
+                <apex:column value="{! each.Name}"/>
+                <apex:column value="{! each.Id}"/>
+            </apex:pageBlockTable>
+            <apex:pageBlockSection >  
+                <apex:commandButton action="{!Save}" value="Save"/>
+            </apex:pageBlockSection>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

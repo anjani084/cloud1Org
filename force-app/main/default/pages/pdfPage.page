@@ -1,0 +1,62 @@
+<apex:page renderAs="pdf" showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false">
+    <html>
+        <head>
+            <style>
+                
+                div.h3 {
+                color: blue;
+                }
+            </style>
+        </head>
+        <body>
+            <h3 style ="width: 50%; color:blue; min-height: 30vh; padding-top:19px">CLOUD ANALOGY</h3>
+            <h1 style ="text-align:right;color: blue; margin-top:-30px; padding-right:70px">INVOICE</h1>
+            <p style ="text-align:left ;padding-bottom:10px ;padding-top:-20px">        
+                A-17 GF,near Birlasoft,sector 63<br/>
+                NOIDA<br/>
+                9875648265
+            </p>
+            <div style= "padding-right:10px; margin-top:-30px; margin-right:4px" > 
+                <table  align="right"  style=" margin-top:-30px" >
+                    <tr >
+                        <th  style="background-color:blue; color:white" >INVOICE   &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; </th>
+                        <th style="background-color:blue; color:white">DATE        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  </th> 
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>24/3/2022</td>
+                    </tr>
+                </table>
+            </div>
+            <h4 style="background-color:blue;color:white; width: 50%; padding-top:6px"  >
+                BILL TO
+            </h4>
+            <div>
+                
+                
+                <table style=" border: 1px solid black; width: 100%"  >
+                    <tr>
+                        <th style=" border: 1px solid black; background-color:blue; color:white">DESCRIPTION</th>
+                        <th style=" border: 1px solid black; background-color:blue; color:white">QTY</th> 
+                        <th style=" border: 1px solid black; background-color:blue; color:white">UNIT PRICE</th>
+                        <th style=" border: 1px solid black; background-color:blue; color:white">AMOUNT</th>
+                    </tr>
+                    <tr>
+                        <td style=" border: 1px solid black ; background-color:#33ccff">Thank You For your business!</td>
+                        <td style=" border: 1px solid black ; background-color:#66ffff
+                                   ">SubTotal</td>
+                        <td style=" border: 1px solid black"></td>
+                        <td style=" border: 1px solid black ; background-color:#66ffff
+                                   ">0</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            
+            <p style="text-align:center">
+                If you have any question about this invoice ,please contact<br/>
+                [mailto:name,phone,email@address.com]
+            </p>
+        </body>
+    </html>
+</apex:page>

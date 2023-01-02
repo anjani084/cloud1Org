@@ -1,0 +1,17 @@
+<apex:page Standardcontroller="Account" extensions="vfHierarchyAccount">
+    <apex:form >
+        Enter Account Name<br/>
+        <apex:inputText value="{!accName}"/><br/>
+        <apex:commandButton action="{!vfHierarchyAccount}" value="search"/>
+        <apex:pageBlock title="Parent_account_Name">
+            <apex:pageBlockTable value="{!accList}" var="acc">
+                <apex:column value="{!acc.Parent.name}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        <apex:pageBlock title="Child_Account_Name" >
+            <apex:pageBlockTable value="{!childAccList}" var="cha">
+                <apex:column value="{!cha.Name}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,34 @@
+<template><lightning-card>
+<iframe src="/apex/showfiles" style="display:none;" id="VFForPdf"></iframe>
+<template for:each={data} for:item="file">
+<div key={file.value} class="slds-box">
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_3-of-12 slds-size_12-of-12">
+            <span>{file.FileExtension}</span>
+        </div>
+        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_3-of-12 slds-size_12-of-12">
+            <span>{file.Title}</span>
+        </div>
+        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_3-of-12 slds-size_12-of-12">
+            <span>{file.ContentSize}</span>
+        </div>
+        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_3-of-12 slds-size_12-of-12">
+            <!-- <lightning-button label="Preview"
+            variant="brand"
+            class="btnStyle"
+            data-id={file.ContentDocumentId}
+            onclick={previewHandler}
+            ></lightning-button> -->
+            <!-- <lightning-button-icon icon-name="utility:preview"   data-id={file.ContentDocumentId} onclick={previewHandler}></lightning-button-icon> -->
+<!-- <lightning-button label="Open VfPage" title="Destructive action" data-id={file.ContentDocumentId} onclick={getImgaedId} class="slds-m-left_x-small"></lightning-button> -->
+
+        <!-- <lightning-button-icon icon-name="utility:preview"   data-id={file.ContentDocumentId} data-fileextension={file.FileExtension} onclick={filePreview}></lightning-button-icon>
+       -->
+       <lightning-button-icon icon-name="utility:preview"  data-title={file.Title} data-id={file.ContentDocumentId} data-fileextension={file.FileExtension} onclick={filePreview}></lightning-button-icon>
+      
+    </div>
+    </div>
+</div>
+</template>
+</lightning-card>
+  </template>

@@ -1,0 +1,27 @@
+<aura:component controller="ContactLookupAura"   implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+     <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:attribute name="accOption" type="List" />
+    <aura:attribute name="selectedAccount" type="String" />
+   <aura:attribute name="contactdetails" type="Contact" default="{ 'sobjectType': 'Contact'}"/>
+   
+
+    <div class="slds-p-left_large slds-p-right_large">
+        <lightning:notificationsLibrary aura:id="notifyId"/>
+	     <lightning:input required = "true" name="contactName" label="Contact last Name"
+                       aura:id="nameId"   placeholder="Last Name" value="{!v.contactdetails.LastName}"/>
+        <lightning:input type="Number" name="contactphone" label=" Phone number" value="{!v.contactdetails.Phone}"/>
+        <lightning:input type="Email" name="contactEmail" label="Email" value="{!v.contactdetails.Email}"/>
+       <lightning:select name="acc" label="Select a Account:" aura:id="acc" value="{!v.selectedAccount}">
+           <option text="None" value =""/>
+            <aura:iteration items="{!v.accOption}" var="opt">
+                <option text="{!opt.Name}" value="{!opt.Id}"/>
+            </aura:iteration>
+        </lightning:select>
+
+        <br/>
+     <lightning:button variant="brand" label="Insert Contact" title="Brand action" 
+                          onclick="{! c.InsertClick }" />
+        <lightning:button variant="brand" label="Cancel" title="Brand action" 
+                          onclick="{! c.CancelAction }" />
+            </div>
+</aura:component>

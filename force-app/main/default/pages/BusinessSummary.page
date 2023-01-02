@@ -1,0 +1,12 @@
+<apex:page controller="VfPageBusinessSummary">
+    <apex:pageBlock title="Business Summary">
+        <apex:pageBlockTable value="{!accList}" var="ac">
+            <apex:column headerValue="Account hyperlink">
+                   <apex:outputlink value="/{!ac.Id}">{!ac.Name}</apex:outputlink>
+                </apex:column>
+            <apex:column value="{!ac.Number_of_Contact__c}"/>
+            <apex:column value="{!ac.Number_Of_Opportunities__c}"/>
+            <apex:column value="{!ac.Number_of_LineItems__c}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

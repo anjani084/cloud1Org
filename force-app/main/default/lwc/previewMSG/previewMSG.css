@@ -1,0 +1,20 @@
+.info-box {
+      color: #F5F5F5;
+      padding: 2em;
+    }
+
+    .error-msg {
+      background-color: #D80A0A;
+    }
+
+    .wizard-msg {
+      background-color: #673AB7;
+    }
+
+    .field-block {
+      padding: 1em 2em;
+    }
+
+    .field-block .field-label {
+      font-weight: bold;
+    }

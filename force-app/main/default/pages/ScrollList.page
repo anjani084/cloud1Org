@@ -1,0 +1,11 @@
+<apex:page controller="ScrollbleListAccount" >
+    <apex:sectionHeader title="Account List"/>
+    <apex:form >
+        <apex:outputPanel layout="block" style="overflow:auto;width:750px;height:250px">
+            <apex:dataTable value="{!accountList}" var="a" >
+                <apex:facet name="header">Account Name</apex:facet>
+                <apex:column value="{!a.Name}"></apex:column>
+            </apex:dataTable>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

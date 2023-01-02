@@ -1,0 +1,134 @@
+1.On campaign to close all the opportunities associated with the campaign when campaign status is completed. Example:Opportunities having line itemsin it must be closed won and opportunities having no line item must be closed lost. Send all the details of All associated opportunities.
+
+public class CloseOpportunitiesCampaignCompleted {
+    public static void ClosingAssociateOpportunities(List<Campaign> campList){
+        try{
+            Set<Id> idSet=new Set<Id>();
+            if(campList.size()>0){
+                for(Campaign each:campList){
+                    idSet.add(each.Id);
+                }
+            }
+            List<Opportunity> oppList=new List<Opportunity>();
+            oppList=[SELECT Id,Name,StageName,CampaignId,campaign.Status,campaign.Email__c,(SELECT Id FROM OpportunityLineItems) FROM Opportunity
+                     WHERE CampaignId in:idSet LIMIT 50000];
+            if(oppList!=null && oppList.size()>0){
+                for(Opportunity each:oppList){
+                    if(each.campaign.status=='Completed'){
+                        if(each.OpportunityLineItems.size()>0){
+                            each.StageName='Closed Won';
+                            EmailManager.sendMail(each.campaign.Id, each.Name+': Closed' ,
+                                                  each.Name+' is Closed Won');
+                        }
+                        else{
+                            each.StageName='Closed Lost';
+                            EmailManager.sendMail(each.Campaign.Id, each.Name+': Closed',
+                                                  each.Name+' is Closed Lost');
+                        }
+                    }
+                }
+            }
+            if(oppList.size()>0){
+                Upsert oppList;
+            }
+        }catch(Exception e){
+            system.debug('Error: '+e.getMessage()+' at Line: '+e.getLineNumber());
+        }
+    }
+
+}
+
+trigger CampaignCompletedTrigger on Campaign (after update) {
+    if(trigger.isUpdate){
+        CloseOpportunitiesCampaignCompleted.ClosingAssociateOpportunities(trigger.new);
+    }
+
+}
+............................................................................................................
+2."""create a custom object with name """"policy"""" have field renew policy[checkbox] and a self lookup field name """"parent policy"""" it has an another field named """"policy number""""[number,unique] and a lookup with opportunity object with field name""""opportunity name"""".create a field on opportunity with name """"policy number[unique]"""".
+write a trigger on policy[before update] to find the opportunity with policy number opportunity[policy number] == [policy]policy number then update opportunity to closed won and if parent policy is not null then  update the parent policy filed [ """"renew policy"""" = true ] and update the policy """"opportunity name[lookup]"""" with opportunity Id. """
+
+public class CustomObjectPolicyUpdate {
+    public static void UpdateOperation(List<Policy__c> polList){
+        try{
+            List<Policy__c> newPolList=new List<Policy__c>();
+            newPolList=[SELECT Id,Policy_number__c,Parent_Policy__c,Opportunity__r.Id,
+                       Parent_Policy__r.renew_Policy__c FROM Policy__c
+                         WHERE Id in:polList LIMIT 50000];
+            
+            set<Id> idSet=new Set<Id>();
+            if(newPolList.size()>0){
+                for(Policy__c each:newpolList){
+                    idSet.add(each.Opportunity__r.Id);
+                }
+            }
+            List<Opportunity> oppList=new List<Opportunity>();
+            oppList=[SELECT Id,Policy_Number__c,StageName FROM Opportunity WHERE Id in:idSet LIMIT 50000];
+            
+            if(oppList.size()>0 && newpolList.size()>0){
+                for(Policy__c each:newpolList){
+                    for(Opportunity each1:oppList){
+                        if(each.policy_Number__c==each1.Policy_number__c){
+                            each1.StageName='Closed Won';
+                            if(each.Parent_Policy__c!=null){
+                                each.Parent_Policy__r.renew_Policy__c=True;
+                                each.opportunity__c=each1.Id;
+                            }
+                        }
+                    }
+                }
+            }
+            if(oppList.size()>0){
+                update oppList;
+            }
+            if(newPolList.size()>0){
+                upsert newPolList;
+            }
+        }catch(Exception e){
+            system.debug('Error: '+e.getMessage()+' at Line: '+e.getLineNumber());
+        }
+    }
+
+}
+
+trigger PolicyUpdateTrigger on Policy__c (before update) {
+    if(trigger.isupdate){
+        CustomObjectPolicyUpdate.UpdateOperation(trigger.new);
+    }
+
+}
+
+.................................................................................................................
+
+3."Write a trigger on Contact  whenever a contact inserted, then send an email to the email field and the owner and the contact with the subject line ""Alert [Conatct]""
+and with the message 'A new contact is inserted in Salesforce and the Full name of the contact, phone and address fields."
+
+trigger ContactInsertMail on Contact (after insert) {
+    if(trigger.isInsert){
+        AlertContactEmail.AlertMessageEmailOperation(trigger.new);
+    }
+
+}
+
+public class AlertContactEmail {
+    public static void AlertMessageEmailOperation(List<Contact> conList){
+        try{
+            List<Contact> newconList=new List<Contact>();
+            newConList=[SELECT Id,OwnerId,Email,Name,Phone,
+                        MailingAddress FROM Contact WHERE Id in:conList Limit 50000];
+            for(Contact each:newConList){
+                EmailManager.sendMail(each.Id,'[Alert Contact]','New Contact Inserted of name: '+each.Name+
+                                      ' and the Phone is: '+each.Phone+', Address is: '+each.MailingAddress);
+                EmailManager.sendMail(each.Email,'[Alert Contact]', 'New Contact Inserted of name: '+each.Name+
+                                      ' and the Phone is: '+each.Phone+', Address is: '+each.MailingAddress);
+                EmailManager.sendmail(each.OwnerId,'[Alert Contact]','New Contact Inserted of name: '+each.Name+
+                                      ' and the Phone is: '+each.Phone+', Address is: '+each.MailingAddress);
+            }
+            
+        }catch(Exception e){
+            system.debug('Error: '+e.getMessage()+' at Line: '+e.getLineNumber());
+        }
+    }
+
+}
+

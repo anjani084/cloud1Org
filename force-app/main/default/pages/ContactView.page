@@ -1,0 +1,7 @@
+<apex:page standardController="Contact">
+    <apex:pageBlock title="ContactView">
+        <apex:pageBlockSection >
+            <apex:detail />
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

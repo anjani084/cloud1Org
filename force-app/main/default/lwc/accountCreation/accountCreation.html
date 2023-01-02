@@ -1,0 +1,21 @@
+<template>
+    <lightning-card  title="Create Account">
+        <lightning-layout>
+            <lightning-layout-item size="6">
+                <lightning-input class="slds-p-around_medium" label="Name" name="accoutName" 
+                    onchange={nameChangedHandler}></lightning-input>
+                <lightning-input class="slds-p-around_medium" label="Account Number" name="accoutNumber" 
+                    onchange={numberChangedHandler}></lightning-input>
+                <lightning-input class="slds-p-around_medium" label="Phone" type="phone" name="accountPhone" 
+                    onchange={phoneChangedHandler}></lightning-input>
+                <lightning-input class="slds-p-around_medium" label="Shipping Address" name="ShippingAddress" 
+                    onchange={ShippingAddressChangedHandler}></lightning-input>
+                <lightning-input class="slds-p-around_medium" label="Annual Revenue" name="AnnualRevenue" 
+                    onchange={AnnualRevenueChangedHandler}></lightning-input>
+                <br/>
+                <lightning-button class="slds-m-left_x-small slds-m-bottom_medium" label="Create Account" variant="brand" 
+                    onclick={createAccount}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

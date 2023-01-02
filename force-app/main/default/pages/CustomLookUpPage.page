@@ -1,0 +1,25 @@
+<apex:page standardController="contact" >
+    <apex:SectionHeader title="contact" subtitle="New Contact"/>
+        <script type="text/javascript">
+        function checkField() {
+            var val = document.getElementById('{!$Component.theForm.thePageBlock.aaa.custm}').value;
+            //alert(val);
+            if (val != null) {
+                document.getElementById('{!$Component.theForm.thePageBlock.aaa.tt}').value = val;
+            }
+        }
+        </script>
+        <apex:form id="theForm">
+            <apex:pageBlock title="Contact Edit" id="thePageBlock">
+                <apex:pageblockButtons >
+                    <apex:commandButton value="save" action="{!save}"/>
+                        <apex:commandButton value="cancel" action="{!cancel}"/>
+                        </apex:pageblockButtons>
+                        <apex:pageBlockSection id="aaa" title="information">
+                            <apex:inputfield value="{!Contact.AccountId}" required="true" onchange="checkField();" id="custm"/>
+                                <apex:inputfield value="{!Contact.LastName}" required="true"/>
+                                    <apex:inputfield value="{!Contact.Title}" id="tt"/>
+                                    </apex:pageblockSection>
+                                </apex:pageBlock>
+                            </apex:form>
+                        </apex:page>

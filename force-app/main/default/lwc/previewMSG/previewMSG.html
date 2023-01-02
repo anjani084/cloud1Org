@@ -1,0 +1,56 @@
+<template>
+<div style="background:white;">
+  <h1>MSG Reader - Example</h1>
+
+<div class="msg-example">
+  <div class="info-box wizard-msg">
+    1. Choose *.msg file...
+  </div>
+  <div class="field-block">
+    <input type="file" class="src-file"/>
+  </div>
+
+  <div class="msg-info" style="display: none;">
+    <div class="info-box wizard-msg">
+      2. MSG info (<span class="msg-file-name"></span>)
+    </div>
+    <div class="field-block">
+      <div class="field-label">From</div>
+      <div class="msg-from"></div>
+    </div>
+    <div class="field-block">
+      <div class="field-label">To</div>
+      <div class="msg-to"></div>
+    </div>
+    <div class="field-block">
+      <div class="field-label">Date (from Headers, example)</div>
+      <div class="msg-date"></div>
+    </div>
+    <div class="field-block">
+      <div class="field-label">Subject</div>
+      <div class="msg-subject"></div>
+    </div>
+    <div class="field-block">
+      <div class="field-label">Body</div>
+      <div class="msg-body"></div>
+    </div>
+    <div class="field-block" style="display: none;">
+      <div class="field-label">HTML Body</div>
+      <div class="msg-body-html"></div>
+    </div>
+    <div class="field-block">
+      <div class="field-label">Attachments</div>
+      <div class="msg-attachment"></div>
+    </div>
+  </div>
+</div>
+
+<div class="incorrect-type info-box error-msg" style="display: none;">
+  Sorry, the file you selected is not MSG type
+</div>
+
+<div class="file-api-not-available info-box error-msg" style="display: none;">
+  Sorry, your browser isn't supported
+</div>
+</div>
+</template>

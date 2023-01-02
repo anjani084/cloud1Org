@@ -1,0 +1,13 @@
+<apex:page Standardcontroller="Opportunity" extensions="VfPageOpportunityClosedDate" >
+     <apex:form >
+        Opportunity Id
+        <apex:inputText value="{!oppId}"/>-->
+        <apex:commandButton value="Search" action="{!VfPageOpportunityClosedDate}"/>
+    <apex:pageBlock title="Opportunity List">
+        <apex:pageBlockTable value="{!oppList}" var="opp">
+           <apex:column headerValue="Message" value="{!Show}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+        </apex:form>
+
+</apex:page>

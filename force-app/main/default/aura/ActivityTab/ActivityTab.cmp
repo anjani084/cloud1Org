@@ -1,0 +1,1213 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global"
+                controller="ActivityTabClass">
+     <aura:attribute name="options" type="List" default="[
+                                                        {'label': 'ANJANI MISHRA &lt;Anjani.mishra@cloudanalogy.com &gt;', 'value': 'anjani.mishra@cloudanalogy.com'}
+                                                        ]"/>
+        <aura:attribute name="data" type="List"/>
+    <aura:attribute name="itemsmypill" type="List"/>
+    <aura:attribute name="StatusOptions" type="List"/>
+    <aura:handler name="init" value="{!this }" action="{!c.initStatus}"/>
+    <aura:handler name="init" value="{!this }" action="{!c.fetchEmailTemplate}"/>
+    <aura:handler name="init" value="{!this }" action="{!c.OwnedbyMe}"/>
+    <aura:handler name="init" value="{!this }" action="{!c.initNewEvent}"/>
+     <aura:handler name="init" value="{!this }" action="{!c.initfetchFieldLabel}"/>
+    <!--Event Handler-->
+    <aura:attribute name="EventsIf" type="boolean" default="true"/>
+    <aura:attribute name="attList2" type="List"/>
+    <aura:attribute name="FieldLabelList" type="List"/>
+    <aura:attribute name="ShowBody2" type="string"/>
+    <aura:attribute name="DueDate" type="Date"/>
+    <aura:attribute name="EventIf" type="boolean" default="false"/>
+    <aura:attribute name="isModalOpen2" type="boolean" default="false"/>
+    <aura:attribute name="isModalOpen5" type="boolean" default="false"/>
+
+    <aura:attribute type="EmailTemplate[]" name="EtempList" default="{ 'sobjectType': 'EmailTemplate'}"/>
+    <aura:attribute name="mycolumns" type="List"/>
+    
+    <aura:attribute name="isModalOpen4" type="boolean" default="false"/>
+    <aura:attribute name="content1" type="boolean" default="false"/>
+    <aura:attribute name="isModalOpen3" type="boolean" default="false"/>
+    <aura:attribute name="isModalOpen20" type="boolean" default="false"/>
+    <aura:attribute name="AttList" type="List"/>
+     <aura:attribute name="message12345" type="String"  default="" access="private" />
+    <aura:attribute name="ListofIds" type="List"/>
+    <aura:handler name="sampleComponentEventWho" event="c:WhoIdEvent" action="{!c.handleComponentEventWho}"/>
+    <aura:handler name="sampleComponentEvent" event="c:relatedToo" action="{!c.handleComponentEvent}"/>
+    <aura:handler name="sampleComponentEventAssignedTo" event="c:NewTaskEvent" action="{!c.handleComponentAssignedTo}"/>
+    <aura:handler name="sampleComponentEventSubject" event="c:NewTaskEvent" action="{!c.handleComponentEventSubjectTask}"/>
+    <aura:attribute name="pillsDiv" type="boolean" default="false"></aura:attribute>
+    <aura:attribute name="isModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="isModalOpen11" type="boolean" default="false"/>
+    <aura:attribute name="SubjectTask123" type="String"/>
+    <aura:attribute name="pillItems" type="List"/>
+    <aura:attribute name="messageBCC" type="boolean"/>
+    <aura:attribute name="CallIf" type="boolean" default="false"/>
+    <aura:attribute name="CallsIf" type="boolean" default="true"/>
+    <aura:attribute name="AssignedTo" type="String"/>
+    <aura:attribute name="CcMail" type="string"/>
+    <aura:attribute name="getselectedfile" type="List"/>
+    <aura:attribute name="StatusTask" type="String"/>
+    <aura:attribute name="content2" type="boolean" default="true"/>
+    <aura:attribute name="searchKey" type="String"/>
+    <aura:attribute name="EmailsIf" type="boolean" default="true"></aura:attribute>
+    <aura:attribute name="EmailIf" type="boolean" default="false"></aura:attribute>
+    <aura:attribute name="enteredValueWho" type="String"/>
+    <aura:attribute name="pillsDivCc" type="boolean" default="false"/>
+    <aura:attribute name="myVal" type="String" />
+    <aura:attribute name="isModalOpen10" type="boolean" default="false"/>
+     <aura:attribute name="filetype" type="List" default="['.png', '.jpg', '.jpeg']" />
+    <aura:attribute name="message" type="Boolean" default="false"/>
+    <aura:attribute name="conList" type="object"/>
+    <aura:attribute name="Emails" type="String" default="anjani.mishra@cloudanalogy.com"/>
+    <aura:attribute name="ToEmail" type="String"/>
+    <aura:attribute name="nameLac" type="String"/>
+    <aura:attribute name="dropdownListBCc" type="boolean"/>
+    <aura:attribute name="isModalOpen6" type="boolean" default="false"/>
+    <aura:attribute name="Comments" type="String"/>
+    <aura:attribute name="itemsmypillId" type="String"/>
+    <aura:attribute name="Location" type="String"/>
+    <aura:attribute name="Subject" type="String"/>
+    <aura:attribute name="dropdownListCc" type="boolean" default="false"/>
+    <aura:attribute name="isDivOpen" type="Boolean" default="false"/>
+    <aura:attribute name="EmailHardCode" type="String"/>
+    <aura:attribute name="ShowBody" type="String"/>
+    <aura:attribute name="EmailHardCodecc" type="String"/>
+    <aura:attribute name="EmailHardCodebcc" type="String"/>
+    <aura:attribute name="isButtonShow" type="Boolean" default="true"/>
+    <aura:attribute name="pillsDivattachment" type="Boolean" default="false"/>
+    <aura:attribute name="TaskIf" type="Boolean" default="false"/>
+    <aura:attribute name="check" type="boolean"/>
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+     <aura:attribute name="objectList" type="List" default="" description="Objects whose records to show" />
+    <aura:attribute name="value" type="String" default="" description="To pre-populate a value" />
+    <aura:attribute name="recordCount" type="string" default="5" description="Records visible at once"/>
+    <aura:attribute name="label" type="string" default="" description="Label will be displayed above input Box" />
+    <aura:attribute name="recEmail" type="string" />
+    <aura:attribute name="enteredValue" type="string" />
+    <aura:attribute name="BccMail" type="string"></aura:attribute>
+    <aura:attribute name="itemsmypillCc" type="List" />
+    <aura:attribute name="subjectTask" type="List"/>
+    <aura:attribute name="SubjectEvent" type="String"/>
+    <aura:attribute name="StartDate" type="datetime"/>
+    <aura:attribute name="EmailTemplatesOptions" type="List" default="['All','My Personal Email Templates','Unfilled Public Classic Email Templates']"/>
+    <aura:attribute name="endDate" type="datetime"/>
+    <aura:attribute name="pillsDivBCc" type="boolean" default="false"/>
+    <aura:attribute name="messageCC" type="boolean" default="false"/>
+    <aura:attribute name="itemsmypillBCc" type="list"/>
+     <aura:attribute name="TaskDetails" type="Task" default="{ 'sobjectType': 'Task'}"/>
+    <aura:attribute name="placeholder" type="string" default="Search.." description="placeholder for input Box" />
+         <aura:handler name="init" value="{!this}" action="{!c.ChangeAct_ion}" />
+   <aura:attribute name="dropdownList" type="boolean" default="false"></aura:attribute>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="searchString" type="string"  default="" access="private" description="String to search"/>
+    <aura:attribute name="selectedObject" type="Object"  default="" access="private" description="selected Object" />
+    <aura:attribute name="selectedRecord" type="Object"  default="" access="private" description="selected Record Id" />
+    <aura:attribute name="recordsList" type="List"    access="private" description="List of Records having data" />
+    <aura:attribute name="showObjectList" type="boolean" default="false" access="private" />
+    <aura:attribute name="ActivityDate" type="Date"/> 
+    <aura:handler name="init" value="{!this}" action="{!c.doInitLac}"/>
+    <aura:attribute name="itemsmypillattachment" type="List"/>
+    <aura:attribute name="searchStringLac" type="string"  default="" access="private" description="String to search"/>
+    <aura:attribute name="messageLac" type="boolean" default="false"/>
+        <aura:attribute name="TasksIf" type="boolean" default="true"/>
+
+    <aura:attribute name="objectListLac" type="List" default="" description="Objects whose records to show" />
+   
+    <lightning:tabset>
+     <div >
+        <lightning:tab label="Activity">
+             <lightning:tabset variant="scoped">
+        <lightning:tab label="New Task">
+            <!--**********************************Subject***********************************-->
+            <aura:if isTrue="{!v.TasksIf}">
+                <div style="width:80%">
+                    <lightning:input onclick="{!c.AddNewTask}" />
+                    </div>
+            <div class="TaskHover" >
+                <p class="btnhover">Create a Task...</p>
+                </div>
+                <div class="AddTaskButton">
+            <lightning:button variant="brand" label="Add" onclick="{!c.AddNewTask}"/>
+                    <br/>
+                    </div>
+            </aura:if>
+            <aura:if isTrue="{!v.TaskIf}">
+            
+            <lightning:select name="Subject"   label="Subject" aura:id="subId">
+                            <option text="--None--"/>
+                            <aura:iteration items="{!v.subjectTask}" var="opp">
+                                <option text="{!opp}" value="{!v.TaskDetails.Subject}"/>
+                            </aura:iteration>
+                        </lightning:select>
+            <br/>
+        
+                <lightning:input type="date" label="Due Date" value="{!v.DueDate}"/>
+                            <br/>
+
+            <!--*****************************onmouseleave="{!c.UpdateColoragain}"*****Name*************************************-->
+            <c:demo/>
+            <!--**********************************RelatedTo*******************************-->
+            <br/>
+            <c:RelatedTo/>
+            <br/>
+            <!--*********************************AssignedTo********************************************-->
+            <c:AssignedTo/>
+            <br/>
+            <!--**************************************************************************************-->
+            
+            <lightning:combobox name="Status" label="Status" required="true"
+                                placeholder="Select an Option" options="{!v.StatusOptions}" 
+                                onchange="{!c.handleChangeStatus}"/>
+                
+            <br/>
+            <br/>
+            <div class="saveButton">
+            <lightning:button variant="brand" label="save" onclick="{!c.saveNewTask}"/>
+                </div>
+            </aura:if>
+        </lightning:tab>
+        <lightning:tab label="Log a Call" >
+            <aura:if isTrue="{!v.CallIf}">
+                <div style="width:80%">
+                    <lightning:input onclick="{!c.AddNewCall}" />
+                    </div>
+            <div class="TaskHover" >
+                <p class="btnhover">Recap your call...</p>
+                </div>
+                <div class="AddTaskButton">
+            <lightning:button variant="brand" label="Add" onclick="{!c.AddNewTask}"/>
+                    <br/>
+                    </div>
+            </aura:if>
+            <aura:if isTrue="{!v.CallsIf}">
+             <lightning:select name="Subject"   label="Subject" aura:id="oppId">
+                            <option text="--None--"/>
+                            <aura:iteration items="{!v.subjectTask}" var="opp">
+                                <option text="{!opp}" value="{!v.TaskDetails.Subject}"/>
+                            </aura:iteration>
+                        </lightning:select>
+             <lightning:textarea label="Comments" value="{!v.Comments}"/>
+ <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->           
+            <c:demo/>
+ <!-->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+    <!-- Component Markup -->
+            <c:RelatedTo/>
+   <!-->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+            <br/>
+            <div class="logCall">
+            <lightning:button variant="brand" label="save" onclick="{!c.saveLogCall}"/>
+            </div>
+            </aura:if>
+        </lightning:tab>
+        <lightning:tab label="New Event">
+            <aura:if isTrue="{!v.EventIf}">
+                <div style="width:80%">
+                    <lightning:input onclick="{!c.AddNewEvent}" />
+                    </div>
+            <div class="TaskHover" >
+                <p class="btnhover">Set up an Event...</p>
+                </div>
+                <div class="AddTaskButton">
+            <lightning:button variant="brand" label="Add" onclick="{!c.AddNewTask}"/>
+                    <br/>
+                    </div>
+            </aura:if>
+            <aura:if isTrue="{!v.EventsIf}">
+            <!--********************************Subject************************************************-->
+            <lightning:select name="Subject"   label="Subject" aura:id="oppId">
+                            <option text="--None--"/>
+                            <aura:iteration items="{!v.subjectTask}" var="opp">
+                                <option text="{!opp}" value="{!v.SubjectEvent}"/>
+                            </aura:iteration>
+                        </lightning:select>
+            <!--***********************************DateAndTime***********************************************-->
+            <lightning:input required="true" type="datetime" name="input2" label="Start" value="{!v.StartDate}"/>
+            <lightning:input required="true" type="datetime" name="input2" label="End" value="{!v.endDate}"/>
+            <br/>
+            <ui:inputCheckbox aura:id="checkbox" label="All-Day Event" change="{!c.onCheck}" value="{!v.check}"/>
+            <!--************************Name,RelatedTo,AssignedTo*********************************-->
+             <c:demo/>
+            
+            <c:RelatedTo/>
+            
+            <c:AssignedTo/>
+            <!--**********************************************************************************-->
+            <lightning:input type="String" label="Location" value="{!v.Location}"/>
+            <br/>
+            <br/>
+            <div class="Neweventbutton">
+            <lightning:button variant="brand" label="save" onclick="{!c.NewEventSaved}"/>
+                </div>
+            
+            </aura:if>
+        </lightning:tab>
+        <lightning:tab label="Email">
+            <aura:if isTrue="{!v.EmailIf}">
+                <div style="width:80%">
+                    <lightning:input onclick="{!c.AddNewEmail}" />
+                    </div>
+            <div class="TaskHover" >
+                <p class="btnhover">Write an Email...</p>
+                </div>
+                <div class="AddTaskButton">
+            <lightning:button variant="brand" label="Add" onclick="{!c.AddNewEmail}"/>
+                    <br/>
+                    </div>
+            </aura:if>
+            <aura:if isTrue="{!v.EmailsIf}">
+           
+                <div class="slds-form_horizontal">
+             <lightning:combobox name="Email" label="From"  required = "true" value="{!v.Emails}" options="{!v.options }"/>
+                    </div>
+            <div onblur="{!c.falseallto}">
+             <div class="slds-form_horizontal" onkeypress="{!c.callKeyUp}">
+                 <lightning:input type="string" label="To" value="{!v.ToEmail}" onkeyup="{!c.EmailSearchKet}" onfocusout="{onblurpills}" />
+                </div>
+                 <aura:if isTrue="{!v.pillsDiv}">
+                                     <lightning:pillContainer items="{!v.itemsmypill}" onitemremove="{!c.removePill}"/>
+                                </aura:if>
+                
+               
+                                        <!-- Dropdown List -->
+                <aura:if isTrue="{!v.dropdownList}">
+                    <div id="listbox-id-1" class="slds-form_horizontal slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid dropListLast" role="listbox" >
+                        <ul class="slds-listbox slds-listbox_vertical recordListBox" role="presentation">
+                            <!--********************************************************-->
+                            <aura:if isTrue="{!v.message}" >
+                               
+
+                                <!-- To display Drop down List -->
+                                <aura:iteration items="{!v.conList.contactList}" var="rec" >
+                                     <div><p>{!rec.Name}</p></div>
+                                    <li id="{!rec.value}" class="slds-listbox__item" data-Name="{!rec.Email}"  onmousedown="{!c.selectItem}" onclick="{!c.ToSelect}" value="{!v.rec.Email}">
+                                        <div class="slds-media slds-listbox__option_entity">
+                                            <span>
+                                                <lightning:icon iconName="standard:contact" alternativeText="objectIcon"></lightning:icon>
+                                            </span>
+                                            <span class="verticalAlign"> 
+                                                <span class="slds-truncate">{!rec.Name}<br/>
+                                                    {!rec.Email}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </aura:iteration>
+                            
+                                <!-- To display Drop down List -->
+                                <aura:iteration items="{!v.conList.leadd_list}" var="rec" >
+                                    <li id="{!rec.value}" class="slds-listbox__item" data-Name="{!rec.Email}" onclick="{!c.ToSelect}" onmousedown="{!c.selectItem}">
+                                        <div class="slds-media slds-listbox__option_entity">
+                                            <span>
+                                                <lightning:icon iconName="standard:lead" alternativeText="objectIcon"></lightning:icon>
+                                            </span>
+                                            <span class="verticalAlign">
+                                                <span class="slds-truncate">{!rec.Name}<br/>
+                                                    {!rec.Email}</span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </aura:iteration>
+ 
+                            </aura:if>
+                        </ul>
+                    </div>
+                    
+                    </aura:if>
+                </div>
+            <aura:if isTrue="{!v.isButtonShow}">
+                <div class="btn" onkeypress="{!c.callKeyUpcc}">
+            <lightning:button variant="base" label="Cc" title="Cc" onclick="{!c.Showdiv}" />
+                    </div>
+            </aura:if>
+            <!--CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC-->
+            <aura:if isTrue="{!v.isDivOpen}">
+                <div class="slds-form_horizontal" onkeypress="{!c.callKeyUpcc}">
+                    <lightning:input type="string" label="Cc" value="{!v.CcMail}" onkeyup="{!c.EmailSearchKetCc}"/>
+                </div>
+                <aura:if isTrue="{!v.pillsDivCc}">
+                                     <lightning:pillContainer items="{!v.itemsmypillCc}" onitemremove="{!c.removePillCc}"/>
+                                </aura:if>
+                <aura:if isTrue="{!v.dropdownListCc}">
+                    <div id="listbox-id-1"  class="slds-form_horizontal slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid dropDownListCc" role="listbox">
+                        <ul class="slds-listbox slds-listbox_vertical recordListBox" role="presentation">
+                            <!--********************************************************-->
+                            <aura:if isTrue="{!v.messageCC}" >
+                               
+
+                                <!-- To display Drop down List -->
+                                <aura:iteration items="{!v.conList.contactList}" var="rec" >
+                                     <div><p>{!rec.Name}</p></div>
+                                    <li id="{!rec.value}" class="slds-listbox__item" data-Name="{!rec.Email}"  onmousedown="{!c.selectItem}" onclick="{!c.ToSelectCc}" value="{!v.rec.Email}">
+                                        <div class="slds-media slds-listbox__option_entity">
+                                            <span>
+                                                <lightning:icon iconName="standard:contact" alternativeText="objectIcon"></lightning:icon>
+                                            </span>
+                                            <span class="verticalAlign">
+                                                <span class="slds-truncate">{!rec.Name}<br/>
+                                                    {!rec.Email}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </aura:iteration>
+                            
+                                <!-- To display Drop down List -->
+                                <aura:iteration items="{!v.conList.leadd_list}" var="rec" >
+                                    <li id="{!rec.value}" class="slds-listbox__item" data-Name="{!rec.Email}" onclick="{!c.ToSelectCc}" onmousedown="{!c.selectItem}">
+                                        <div class="slds-media slds-listbox__option_entity">
+                                            <span>
+                                                <lightning:icon iconName="standard:lead" alternativeText="objectIcon"></lightning:icon>
+                                            </span>
+                                            <span class="verticalAlign">
+                                                <span class="slds-truncate">{!rec.Name}<br/>
+                                                    {!rec.Email}</span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </aura:iteration>
+ 
+                            </aura:if>
+                        </ul>
+                    </div>
+                    </aura:if>
+            </aura:if>
+            <div class="slds-form_horizontal" onkeypress="{!c.callKeyUpbcc}">
+            <!--BCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCC-->
+            
+                    <lightning:input type="sring" label="Bcc" value="{!v.BccMail}" onkeyup="{!c.EmailSearchKetBCc}"></lightning:input>
+            </div>
+             <aura:if isTrue="{!v.pillsDivBCc}">
+                                     <lightning:pillContainer items="{!v.itemsmypillBCc}" onitemremove="{!c.removePillBCc}"/>
+                                </aura:if>
+                <aura:if isTrue="{!v.dropdownListBCc}">
+                    <div id="listbox-id-1"  class="slds-form_horizontal slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid dropDownListbc" role="listbox">
+                        <ul class="slds-listbox slds-listbox_vertical recordListBox" role="presentation">
+                            <!--********************************************************-->
+                            <aura:if isTrue="{!v.messageBCC}" >
+                               
+
+                                <!-- To display Drop down List -->
+                                <aura:iteration items="{!v.conList.contactList}" var="rec" >
+                                     <div><p>{!rec.Name}</p></div>
+                                    <li id="{!rec.value}" class="slds-listbox__item" data-Name="{!rec.Email}"  onmousedown="{!c.selectItem}" onclick="{!c.ToSelectBCc}" value="{!v.rec.Email}">
+                                        <div class="slds-media slds-listbox__option_entity">
+                                            <span>
+                                                <lightning:icon iconName="standard:contact" alternativeText="objectIcon"></lightning:icon>
+                                            </span>
+                                            <span class="verticalAlign">
+                                                <span class="slds-truncate">{!rec.Name}<br/>
+                                                    {!rec.Email}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </aura:iteration>
+                            
+                                <!-- To display Drop down List -->
+                                <aura:iteration items="{!v.conList.leadd_list}" var="rec" >
+                                    <li id="{!rec.value}" class="slds-listbox__item" data-Name="{!rec.Email}" onclick="{!c.ToSelectBCc}" onmousedown="{!c.selectItem}">
+                                        <div class="slds-media slds-listbox__option_entity">
+                                            <span>
+                                                <lightning:icon iconName="standard:lead" alternativeText="objectIcon"></lightning:icon>
+                                            </span>
+                                            <span class="verticalAlign">
+                                                <span class="slds-truncate">{!rec.Name}<br/>
+                                                    {!rec.Email}</span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </aura:iteration>
+ 
+                            </aura:if>
+                        </ul>
+                    </div>
+                    </aura:if>
+                 
+            <!--//////////////////////////////////////////////////////////////////////////////////////////////////-->
+            <div class="slds-form_horizontal">
+                <lightning:input type="text" placeholder="Enter Subject..." label="Subject" value="{!v.Subject}"/>
+            </div>
+                <lightning:inputRichText value="{!v.myVal}" />
+                <br/>
+                 <aura:if isTrue="{!v.pillsDivattachment}">
+                                     <lightning:pillContainer items="{!v.itemsmypillattachment}" onitemremove="{!c.removeitemsPillattachment}"/>
+                                </aura:if>
+                <lightning:buttonGroup>
+            <lightning:buttonIcon iconName="utility:attach" onclick="{!c.AttachData}" alternativeText="Attach File" title="Attach File" />
+            <lightning:buttonIcon iconName="utility:insert_tag_field" onclick="{!c.InsertData }" alternativeText="Insert merge field" title="Insert merge field" />
+            <lightning:buttonIcon iconName="utility:insert_template" onclick="{!c.ChangeTemplate }" alternativeText="Change template" title="Insert Create or Update template" />
+
+                </lightning:buttonGroup>
+                <lightning:buttonGroup>
+           <lightning:buttonIcon iconName="utility:preview" onclick="{!c.PreviewData }" alternativeText="Preview email" title="Preview email" />
+           <lightning:buttonIcon iconName="utility:delete" onclick="{!c.ClearData }" alternativeText="Clear email and revert" title="Clear email and revert" />
+           <lightning:buttonIcon iconName="utility:new_window" onclick="{!c.PopupData }" alternativeText="Popout to docked view" title="Popout to docked view" />
+                  
+                    
+                    <div class="container lgc-bg buttonmenu">
+            <lightning:buttonMenu alternativeText="Show menu" variant="borderless" onselect="{!c.selectMenu}">
+                <lightning:menuItem value="MenuItemOne" label="Insert a template..."/>
+                <lightning:menuItem value="MenuItemTwo" label="Save as new template..." />
+                <lightning:menuItem value="MenuItemThree" label="Save template..." />
+            </lightning:buttonMenu>
+                    </div>
+                    <!--////////////////////////////////////////////////////-->
+                </lightning:buttonGroup>
+                <aura:if isTrue="{!v.isModalOpen}">
+                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                     <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{!c.closeModel}"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+               <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Preview Email</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1" style="height:250px">
+                   {!v.ShowBody}
+                        </div>
+                    <!--<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">-->
+                        <footer class="slds-modal__footer">
+                            <lightning:button variant="brand"
+                                          label="Close"
+                                          title="Cancel"
+                                          onclick="{!c.closeModel }"/>
+                            
+                        </footer>
+                    </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                    
+                </aura:if>
+                <!--////////////////////////////////////////////////////-->
+                <aura:if isTrue="{!v.isModalOpen2}">
+                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                     <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{!c.closeModel2}"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                    
+               <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Clear email?</h2>
+                    </header>
+                    <div class="slds-modal__content " style="padding-bottom:7%;padding-top:7%" id="modal-content-id-1">
+                    <span style="padding-left:15%">Recipients, subject, body text, and attachments are removed.</span>
+                            
+                    </div>
+                        <footer class="slds-modal__footer">
+                            <lightning:button variant="brand"
+                                          label="Clear"
+                                          title="Clear"
+                                          onclick="{!c.closeModel21}"/>
+                           <lightning:button variant="Neutral"
+                                          label="Cancel"
+                                          title="Cancel"
+                                          onclick="{!c.closeModel2}"/>
+                        </footer>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+                    
+                </aura:if>
+                <!--////////////////////////////////////////////////////-->
+                                <!--///////////////////////////////////////////////////////////////-->
+                <aura:if isTrue="{!v.isModalOpen3}">
+                    <div>
+                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                         <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{!c.closeModel3}"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+               <p id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Email?</p>
+                    </header>
+           <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-form_horizontal">
+             <lightning:combobox name="Email" label="From"  required = "true" value="{!v.Emails}" options="{! v.options }"/>
+                    </div>
+            <div onblur="{!c.falseallto}">
+             <div class="slds-form_horizontal" onkeypress="{!c.callKeyUp}">
+                 <lightning:input type="string" label="To" value="{!v.ToEmail}" onkeyup="{!c.EmailSearchKet}" onfocusout="{onblurpills}" />
+                </div>
+                 <aura:if isTrue="{!v.pillsDiv}">
+                                     <lightning:pillContainer items="{!v.itemsmypill}" onitemremove="{!c.removePill}"/>
+                                </aura:if>
+                
+               
+                                        <!-- Dropdown List -->
+                <aura:if isTrue="{!v.dropdownList}">
+                    <div id="listbox-id-1" class="slds-form_horizontal slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid dropListLast" role="listbox" >
+                        <ul class="slds-listbox slds-listbox_vertical recordListBox" role="presentation">
+                            <!--********************************************************-->
+                            <aura:if isTrue="{!v.message}" >
+                               
+
+                                <!-- To display Drop down List -->
+                                <aura:iteration items="{!v.conList.contactList}" var="rec" >
+                                     <div><p>{!rec.Name}</p></div>
+                                    <li id="{!rec.value}" class="slds-listbox__item" data-Name="{!rec.Email}"  onmousedown="{!c.selectItem}" onclick="{!c.ToSelect}" value="{!v.rec.Email}">
+                                        <div class="slds-media slds-listbox__option_entity">
+                                            <span>
+                                                <lightning:icon iconName="standard:contact" alternativeText="objectIcon"></lightning:icon>
+                                            </span>
+                                            <span class="verticalAlign"> 
+                                                <span class="slds-truncate">{!rec.Name}<br/>
+                                                    {!rec.Email}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </aura:iteration>
+                            
+                                <!-- To display Drop down List -->
+                                <aura:iteration items="{!v.conList.leadd_list}" var="rec" >
+                                    <li id="{!rec.value}" class="slds-listbox__item" data-Name="{!rec.Email}" onclick="{!c.ToSelect}" onmousedown="{!c.selectItem}">
+                                        <div class="slds-media slds-listbox__option_entity">
+                                            <span>
+                                                <lightning:icon iconName="standard:lead" alternativeText="objectIcon"></lightning:icon>
+                                            </span>
+                                            <span class="verticalAlign">
+                                                <span class="slds-truncate">{!rec.Name}<br/>
+                                                    {!rec.Email}</span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </aura:iteration>
+ 
+                            </aura:if>
+                        </ul>
+                    </div>
+                    
+                    </aura:if>
+                </div>
+            <aura:if isTrue="{!v.isButtonShow}">
+                <div class="btn" onkeypress="{!c.callKeyUpcc}">
+            <lightning:button variant="base" label="Cc" title="Cc" onclick="{!c.Showdiv}" />
+                    </div>
+            </aura:if>
+            <!--CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC-->
+            <aura:if isTrue="{!v.isDivOpen}">
+                <div class="slds-form_horizontal" onkeypress="{!c.callKeyUpcc}">
+                    <lightning:input type="string" label="Cc" value="{!v.CcMail}" onkeyup="{!c.EmailSearchKetCc}"/>
+                </div>
+                <aura:if isTrue="{!v.pillsDivCc}">
+                                     <lightning:pillContainer items="{!v.itemsmypillCc}" onitemremove="{!c.removePillCc}"/>
+                                </aura:if>
+                <aura:if isTrue="{!v.dropdownListCc}">
+                    <div id="listbox-id-1"  class="slds-form_horizontal slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid dropDownListCc" role="listbox">
+                        <ul class="slds-listbox slds-listbox_vertical recordListBox" role="presentation">
+                            <!--********************************************************-->
+                            <aura:if isTrue="{!v.messageCC}" >
+                               
+
+                                <!-- To display Drop down List -->
+                                <aura:iteration items="{!v.conList.contactList}" var="rec" >
+                                     <div><p>{!rec.Name}</p></div>
+                                    <li id="{!rec.value}" class="slds-listbox__item" data-Name="{!rec.Email}"  onmousedown="{!c.selectItem}" onclick="{!c.ToSelectCc}" value="{!v.rec.Email}">
+                                        <div class="slds-media slds-listbox__option_entity">
+                                            <span>
+                                                <lightning:icon iconName="standard:contact" alternativeText="objectIcon"></lightning:icon>
+                                            </span>
+                                            <div>
+                                            <span class="verticalAlign">
+                                                <span class="slds-truncate">{!rec.Name}<br/>
+                                                    {!rec.Email}
+                                                </span>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </aura:iteration>
+                            
+                                <!-- To display Drop down List -->
+                                <aura:iteration items="{!v.conList.leadd_list}" var="rec" >
+                                    <li id="{!rec.value}" class="slds-listbox__item" data-Name="{!rec.Email}" onclick="{!c.ToSelectCc}" onmousedown="{!c.selectItem}">
+                                        <div class="slds-media slds-listbox__option_entity">
+                                            <span>
+                                                <lightning:icon iconName="standard:lead" alternativeText="objectIcon"></lightning:icon>
+                                            </span>
+                                            <div>
+                                            <span class="verticalAlign">
+                                                <span class="slds-truncate">{!rec.Name}<br/>
+                                                    {!rec.Email}</span>
+                                            </span>
+                                                </div>
+                                        </div>
+                                    </li>
+                                </aura:iteration>
+ 
+                            </aura:if>
+                        </ul>
+                    </div>
+                    </aura:if>
+            </aura:if>
+            <div class="slds-form_horizontal" onkeypress="{!c.callKeyUpbcc}">
+            <!--BCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCCBCC-->
+            
+                    <lightning:input type="sring" label="Bcc" value="{!v.BccMail}" onkeyup="{!c.EmailSearchKetBCc}"></lightning:input>
+            </div>
+             <aura:if isTrue="{!v.pillsDivBCc}">
+                                  <lightning:pillContainer items="{!v.itemsmypillBCc}" onitemremove="{!c.removePillBCc}"/>
+                                </aura:if>
+                <aura:if isTrue="{!v.dropdownListBCc}">
+                    <div id="listbox-id-1"  class="slds-form_horizontal slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid dropDownListbc" role="listbox">
+                        <ul class="slds-listbox slds-listbox_vertical recordListBox" role="presentation">
+                            <!--********************************************************-->
+                            <aura:if isTrue="{!v.messageBCC}" >
+                               
+
+                                <!-- To display Drop down List -->
+                                <aura:iteration items="{!v.conList.contactList}" var="rec" >
+                                     <div><p>{!rec.Name}</p></div>
+                                    <li id="{!rec.value}" class="slds-listbox__item" data-Name="{!rec.Email}"  onmousedown="{!c.selectItem}" onclick="{!c.ToSelectBCc}" value="{!v.rec.Email}">
+                                        <div class="slds-media slds-listbox__option_entity">
+                                            <span>
+                                                <lightning:icon iconName="standard:contact" alternativeText="objectIcon"></lightning:icon>
+                                            </span>
+                                            <span class="verticalAlign">
+                                                <span class="slds-truncate">{!rec.Name}<br/>
+                                                    {!rec.Email}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </aura:iteration>
+                            
+                                <!-- To display Drop down List -->
+                                <aura:iteration items="{!v.conList.leadd_list}" var="rec" >
+                                    <li id="{!rec.value}" class="slds-listbox__item" data-Name="{!rec.Email}" onclick="{!c.ToSelectBCc}" onmousedown="{!c.selectItem}">
+                                        <div class="slds-media slds-listbox__option_entity">
+                                            <span>
+                                                <lightning:icon iconName="standard:lead" alternativeText="objectIcon"></lightning:icon>
+                                            </span>
+                                            <span class="verticalAlign">
+                                                <span class="slds-truncate">{!rec.Name}<br/>
+                                                    {!rec.Email}</span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </aura:iteration>
+ 
+                            </aura:if>
+                        </ul>
+                    </div>
+                    </aura:if>
+                 
+            <!--//////////////////////////////////////////////////////////////////////////////////////////////////-->
+            <div class="slds-form_horizontal">
+                <lightning:input type="text" placeholder="Enter Subject..." label="Subject" value="{!v.Subject}"/>
+            </div>
+                <lightning:inputRichText value="{!v.myVal}" />
+ <c:RelatedTo/>
+                    </div>
+   <!-- </div>-->
+                    <footer class="slds-modal__footer">
+                        
+                        
+                     
+            <br/>
+                        
+            <lightning:button variant="brand" label="Send" onclick="{!c.myAction }"></lightning:button>
+                    </footer>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+                    </div>
+                </aura:if>
+                <!--///////////////////////////////////////////////////////////////-->
+                <c:RelatedTo/>
+                 
+   <!-- </div>-->
+            <br/>
+            <lightning:button variant="brand" label="Send" onclick="{!c.myAction }"></lightning:button>
+            </aura:if>
+            
+            
+        </lightning:tab>         
+    </lightning:tabset>
+        </lightning:tab>
+         <!--////////////////////////////////////////////////////////////////////////////////-->
+         <aura:if isTrue="{!v.isModalOpen4}">
+                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                         <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{!c.closeModel4}"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h1 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Select File</h1>
+                    </header>
+                    <div class="slds-modal__content" id="modal-content-id-1">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_4-of-12 slds-border_right ">
+                            <div class="slds-p-around_medium slds-border_bottom">
+                             <lightning:fileUpload
+                      name="fileUploader"
+                      multiple="true"
+                      accept="{!v.filetype}"
+                      recordId="{!v.recordId}"
+                      onuploadfinished="{!c.handleUploadFinished}" />
+                            </div>
+                            <div class="slds-grid slds-grid_vertical slds-wrap">
+  <div class="slds-col AttachmentPortion slds-p-horizontal_none slds-size_1-of-1" style="padding-top:15px;padding-bottom:15px">
+    <span class="slds-p-around_medium" onclick="{!c.OwnedbyMe}">Owned by Me</span>
+  </div>
+  <div class="slds-col AttachmentPortion slds-p-horizontal_none slds-size_1-of-1" style="padding-top:15px;padding-bottom:15px" onclick="{!c.Sharedwithme}">
+    <span class="slds-p-around_medium">Shared with me</span>
+  </div>
+  <div class="slds-col AttachmentPortion slds-p-horizontal_none slds-size_1-of-1" style="padding-top:15px;padding-bottom:15px" onclick="{!c.Recent}">
+    <span class="slds-p-around_medium">Recent</span>
+  </div>
+  <div class="slds-col AttachmentPortion slds-p-horizontal_none slds-size_1-of-1" style="padding-top:15px;padding-bottom:15px" onclick="{!c.Following}">
+    <span class="slds-p-around_medium">Following</span>
+  </div>
+  <div class="slds-col AttachmentPortion slds-p-horizontal_none slds-size_1-of-1" style="padding-top:15px;padding-bottom:15px" onclick="{!c.Libraries}">
+    <span class="slds-p-around_medium">Libraries</span>
+  </div>
+  <div class="slds-col AttachmentPortion slds-p-horizontal_none slds-size_1-of-1" style="padding-top:15px;padding-bottom:15px" onclick="{!c.RelatedFiles}">
+    <span class="slds-p-around_medium">Related Files</span>
+  </div>
+</div> 
+                            </div>
+                        <div class="slds-col slds-size_8-of-12 ">
+                            <div class="slds-p-around_medium slds-border_bottom " style="padding-bottom:5%">
+                            <lightning:input type="search" placeholder="Search Files..."/>
+                                </div>
+                            <aura:if isTrue="{!v.content1}">
+                                <span class="slds-p-around_medium">
+                            You don't have any files here. Try a different filter, or upload a file.
+                                    </span>
+                            </aura:if>
+                             <aura:if isTrue="{!v.content2}">
+                                <tr class="AttachmentPortion slds-p-around_medium">
+                                    <div class="slds-scrollable_y">        
+                                                                <table class="slds-table slds-table_bordered slds-table_striped  slds-table_fixed-layout">                                            
+                                                                    <tbody>
+                                                                        <aura:iteration items="{!v.AttList}" var="contentVar"> 
+                                                                            <tr> <div onclick="{!c.add_att}" data-recId="{! contentVar.ContentDocumentId}">
+                                                                                <td >{!contentVar.Title}</td>
+                                                                                <td>
+                                                                                    <lightning:input type="checkbox" checked="false"/>
+                                                                                </td>
+                                                                                </div>
+                                                                            </tr>
+                                                                        </aura:iteration>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                </tr>
+                            </aura:if>
+                        </div>
+                    </div>
+                        <footer class="slds-modal__footer">
+                            <lightning:button variant="neutral"
+                                          label="Cancel"
+                                          title="Cancel"
+                                          onclick="{!c.closeModel4}"/>
+                           <lightning:button variant="Brand"
+                                          label="Add"
+                                          title="Add"
+                                          onclick="{!c.onAddAttachment}"/>
+                        </footer>
+                        </div>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+                            
+                            
+                       
+                </aura:if>
+         <!--//////////////////////////////////////////////////////////////////////////////////////////-->
+         <aura:if isTrue="{!v.isModalOpen5}">
+                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                         <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{!c.closeModel5}"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h1 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Insert Merge Field</h1>
+                    </header>
+                    <div class="slds-modal__content" id="modal-content-id-1">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_4-of-12 slds-border_right ">
+                            <div class="slds-p-around_medium">
+                             
+                            
+                            <div class="slds-grid slds-grid_vertical slds-wrap">
+  <div class="slds-col AttachmentPortion slds-p-horizontal_none slds-size_1-of-1" style="padding-top:15px;padding-bottom:15px">
+    <span class="slds-p-around_medium">Reciepient</span>
+  </div>
+  <div class="slds-col AttachmentPortion slds-p-horizontal_none slds-size_1-of-1" style="padding-top:15px;padding-bottom:15px" onclick="{!c.Sharedwithme}">
+    <span class="slds-p-around_medium">Sender</span>
+  </div>
+  <div class="slds-col AttachmentPortion slds-p-horizontal_none slds-size_1-of-1" style="padding-top:15px;padding-bottom:15px" onclick="{!c.Recent}">
+    <span class="slds-p-around_medium">Organization</span>
+  </div>
+                                </div>
+</div> 
+                            
+                            
+                        </div>
+                        <div class="slds-col slds-size_8-of-12 ">
+                            <h2 class="slds-text-heading_small" style="padding-left:5%">Select Merge Field</h2>
+                            <div class="slds-p-around_medium" style="padding-bottom:5%">
+                            <lightning:input type="search" placeholder="Search Recipients Merge field..."/>
+                                </div>
+                            
+                            <aura:iteration items="{!v.FieldLabelList}" var="LCList">
+                                <div style="padding-top:3%;padding-bottom:3%">
+                                    <span class="slds-radio">
+      <input type="radio" id="radio-43" value="radio-43" name="default" checked="" />
+      <label class="slds-radio__label" for="radio-43">
+        <span class="slds-radio_faux"></span>
+        <span class="slds-form-element__label">{!LCList}</span>
+      </label>
+    </span>
+                                
+                                    </div>
+                            </aura:iteration>
+                                                   </div>
+
+                    </div>
+                         </div>
+                        <footer class="slds-modal__footer">
+                            <lightning:button variant="neutral"
+                                          label="Cancel"
+                                          title="Cancel"
+                                          onclick="closeModel5"/>
+                           <lightning:button variant="Brand"
+                                          label="Insert"
+                                          title="Insert"
+                                          />
+                        </footer>
+                       
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </aura:if>
+         <!--////////////////////////////////////////////////////////////////////////////////////-->
+         <aura:if isTrue="{!v.isModalOpen10}">
+                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_small">
+                <div class="slds-modal__container">
+                     <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{!c.closeModel10}"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+               <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Insert Email Template</h2>
+                         <div class="slds-p-around_medium">
+               <p>Select a template for: Contacts  Leads</p> 
+                             </div>
+                    </header>
+                    <div class="slds-modal__content" id="modal-content-id-1">
+                     <div class="slds-grid">
+                         <div class="slds-col slds-size_3-of-12 ">
+                            <div class="slds-p-around_medium">
+                                <lightning:Select name="select1" label="Templates">
+        <option value="1">My Lightning Templates</option>
+        <option value="2">All Lightning Templates</option>
+        <option value="3">All Classic Templates</option>
+    </lightning:Select>
+                                
+                         
+                         
+                             </div>
+                         </div>
+                         <div class="slds-col slds-size_3-of-12 ">
+                            <div class="slds-p-around_medium">
+                             </div>
+                         </div>
+                         
+                         
+                         <div class="slds-col slds-size_3-of-12 ">
+                            <div class="slds-p-around_medium">
+                                <lightning:Select name="select2" label="Template Folders" >
+                                    <option value="1">All</option>
+        <option value="2">My Personal Email Templates</option>
+        <option value="3">Unfilled Public Classic Email Templates</option>
+                                    
+                                </lightning:Select>
+                                </div>
+                    </div>
+                         
+                         
+                         <div class="slds-col slds-size_3-of-12 ">
+                            <div class="slds-p-around_medium">
+                                <lightning:input type="Search" label="Search" placeholder="Search Templates..."/>
+                    </div>
+                    </div>
+                         </div>
+                  
+                         <lightning:datatable data="{!v.EtempList}" 
+                         columns="{!v.mycolumns}" 
+                         keyField="id"
+                         hideCheckboxColumn="true"/>
+                        
+                    </div>
+                        <footer class="slds-modal__footer">
+                            <lightning:button variant="Neutral"
+                                          label="Cancel"
+                                          title="Cancel"
+                                          onclick="{!c.closeModel10}"/>
+                            
+                        </footer>
+                    </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                    
+                </aura:if>
+         <!--////////////////////////////////////////////////////////////////////////////////////-->
+         <aura:if isTrue="{!v.isModalOpen11}">
+                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_small">
+                <div class="slds-modal__container">
+                     <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{!c.closeModel11}"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+               <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Can’t save template</h2>
+                    </header>
+                    <div class="slds-modal__content " id="modal-content-id-1">
+                        <div class="slds-p-around_medium">
+               <p>To save your template, add a subject. You can always change the subject after you insert the template.
+</p> 
+                             </div>
+                    <div class="slds-p-around_medium GotItButton">
+                            <lightning:button variant="Brand"
+                                          label="Got It"
+                                          title="Got It"
+                                          onclick="{!c.closeModel11}"/>
+                    </div>
+                        </div>
+                    </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </aura:if>
+         <!--/////////////////////////////////////////////////////////////////////////////////////-->
+        <lightning:tab label="Chatter" title="2nd tab extended title">
+            >>>>>>>>>Not Available>>>>>>>>>>>
+        </lightning:tab>
+         </div>
+    </lightning:tabset>
+    <div class="hardCoded">
+   <p>Filters: All time • All activities • All types</p>
+        <div class="settingcss" onclick="{!c.callsetting}">
+            
+        <lightning:buttonIcon iconName="utility:settings" variant="brand" alternativeText="Settings" title="Settings" />
+        </div>
+        <!--//////////////////////////////////////////////////////////////////////-->
+            <aura:if isTrue="{!v.isModalOpen20}">
+                    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                         <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{!c.closeModel20}"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                            </header>
+                    <div class="slds-modal__content " id="modal-content-id-1">
+                        <h6 style="padding-left:2%;">DATE RANGE</h6>
+                        <div class="slds-grid">
+                             <div class="slds-col slds-size_6-of-12 ">
+                            <div class="slds-p-around_medium">
+                                <span class="slds-radio">
+      <input type="radio" id="radio-43" value="radio-43" name="default" checked="" />
+      <label class="slds-radio__label" for="radio-43">
+        <span class="slds-radio_faux"></span>
+        <span class="slds-form-element__label">All Time</span>
+      </label>
+    </span>
+                                 </div>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12 ">
+                            <div class="slds-p-around_medium" >
+                                <span class="slds-radio">
+      <input type="radio" id="radio-43" value="radio-43" name="default" checked="" />
+      <label class="slds-radio__label" for="radio-43">
+        <span class="slds-radio_faux"></span>
+        <span class="slds-form-element__label">Last 7 Days</span>
+      </label>
+    </span>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size_6-of-12 ">
+                            <div class="slds-p-around_medium">
+                                <span class="slds-radio">
+      <input type="radio" id="radio-43" value="radio-43" name="default" checked="" />
+      <label class="slds-radio__label" for="radio-43">
+        <span class="slds-radio_faux"></span>
+        <span class="slds-form-element__label">Next 7 days</span>
+      </label>
+    </span>
+                                 </div>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12 ">
+                            <div class="slds-p-around_medium">
+                                <span class="slds-radio">
+      <input type="radio" id="radio-43" value="radio-43" name="default" checked="" />
+      <label class="slds-radio__label" for="radio-43">
+        <span class="slds-radio_faux"></span>
+        <span class="slds-form-element__label">Last 30 days</span>
+      </label>
+    </span>
+                                 </div>
+                            </div>
+                        </div>
+                        <h6 style="padding-left:2%">ACTIVITIES TO SHOW</h6>
+                         <div class="slds-grid">
+                            <div class="slds-col slds-size_6-of-12 ">
+                            <div class="slds-p-around_medium">
+                                <span class="slds-radio">
+      <input type="radio" id="radio-43" value="radio-43" name="default" checked="" />
+      <label class="slds-radio__label" for="radio-43">
+        <span class="slds-radio_faux"></span>
+        <span class="slds-form-element__label">All activities</span>
+      </label>
+    </span>
+                                 </div>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12 ">
+                            <div class="slds-p-around_medium">
+                                <span class="slds-radio">
+      <input type="radio" id="radio-43" value="radio-43" name="default" checked="" />
+      <label class="slds-radio__label" for="radio-43">
+        <span class="slds-radio_faux"></span>
+        <span class="slds-form-element__label">My activities</span>
+      </label>
+    </span>
+                                 </div>
+                            </div>
+                        </div>
+                         <h6 style="padding-left:2%">ACTIVITY TYPE</h6>
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size_6-of-12 ">
+                                <div class="slds-p-around_medium">
+                            <div class="slds-checkbox">
+      <input type="checkbox" name="options" id="checkbox-unique-id-81" value="checkbox-unique-id-81" checked="" />
+      <label class="slds-checkbox__label" for="checkbox-unique-id-81">
+        <span class="slds-checkbox_faux"></span>
+        <span class="slds-form-element__label">All Type</span>
+      </label>
+    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12 ">
+                            <div class="slds-p-around_medium">
+                                <div class="slds-checkbox">
+      <input type="checkbox" name="options" id="checkbox-unique-id-81" value="checkbox-unique-id-81" checked="" />
+      <label class="slds-checkbox__label" for="checkbox-unique-id-81">
+        <span class="slds-checkbox_faux"></span>
+        <span class="slds-form-element__label">List Email</span>
+      </label>
+    </div>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size_6-of-12 ">
+                                <div class="slds-p-around_medium">
+                            <div class="slds-checkbox">
+      <input type="checkbox" name="options" id="checkbox-unique-id-81" value="checkbox-unique-id-81" checked="" />
+      <label class="slds-checkbox__label" for="checkbox-unique-id-81">
+        <span class="slds-checkbox_faux"></span>
+        <span class="slds-form-element__label">Email</span>
+      </label>
+    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12 ">
+                            <div class="slds-p-around_medium">
+                                <div class="slds-checkbox">
+      <input type="checkbox" name="options" id="checkbox-unique-id-81" value="checkbox-unique-id-81" checked="" />
+      <label class="slds-checkbox__label" for="checkbox-unique-id-81">
+        <span class="slds-checkbox_faux"></span>
+        <span class="slds-form-element__label">Logged calls</span>
+      </label>
+    </div>
+                                 </div>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size_6-of-12 ">
+                                <div class="slds-p-around_medium">
+                            <div class="slds-checkbox">
+      <input type="checkbox" name="options" id="checkbox-unique-id-81" value="checkbox-unique-id-81" checked="" />
+      <label class="slds-checkbox__label" for="checkbox-unique-id-81">
+        <span class="slds-checkbox_faux"></span>
+        <span class="slds-form-element__label">Events</span>
+      </label>
+    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_6-of-12 ">
+                            <div class="slds-p-around_medium">
+                                <div class="slds-checkbox">
+      <input type="checkbox" name="options" id="checkbox-unique-id-81" value="checkbox-unique-id-81" checked="" />
+      <label class="slds-checkbox__label" for="checkbox-unique-id-81">
+        <span class="slds-checkbox_faux"></span>
+        <span class="slds-form-element__label">Tasks</span>
+      </label>
+    </div>
+                                 </div>
+                            </div>
+                        </div>
+                        <h6 style="padding-left:2%">SORT UPCOMING &amp; OVERDUE ACTIVITIES</h6>
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size_6-of-12 ">
+                            <div class="slds-p-around_medium">
+                                <span class="slds-radio">
+      <input type="radio" id="radio-43" value="radio-43" name="default" checked="" />
+      <label class="slds-radio__label" for="radio-43">
+        <span class="slds-radio_faux"></span>
+        <span class="slds-form-element__label">Oldest dates first</span>
+      </label>
+    </span>
+                                 </div>
+                            </div>
+                        </div>
+                         <div class="slds-grid">
+                            <div class="slds-col slds-size_6-of-12 ">
+                            <div class="slds-p-around_medium">
+                                <span class="slds-radio">
+      <input type="radio" id="radio-43" value="radio-43" name="default" checked="" />
+      <label class="slds-radio__label" for="radio-43">
+        <span class="slds-radio_faux"></span>
+        <span class="slds-form-element__label">Newest dates first</span>
+      </label>
+    </span>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                        <footer class="slds-modal__footer">
+                            <lightning:button variant="neutral"
+                                          label="Apply &amp; Save"
+                                          title="Apply &amp; Save"
+                                          onclick="{!c.closeModel20}"/>
+                    
+                            <lightning:button variant="Brand"
+                                          label="Save"
+                                          title="Save"
+                                          onclick="{!c.closeModel20}"/>
+                        </footer>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </aura:if>
+    </div>
+    <br/>
+</aura:component>

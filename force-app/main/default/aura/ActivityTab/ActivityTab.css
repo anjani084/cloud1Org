@@ -1,0 +1,154 @@
+.THIS {
+}
+.THIS .btn{
+    float:right;
+    position:absolute;
+    right:25px;
+    top:120px;
+}
+.THIS .inputBox input{
+    padding-left: 52px;
+}
+.THIS .objectName {
+    padding-left: 5px;
+    position: relative;
+}
+.THIS .dropdownIcon svg{
+    width: 1rem !important;
+    height: 1rem !important;
+    margin: 4px 0px 0px 4px !important;
+}
+.THIS .objectIcons {
+    border-radius: 0.1rem !important;
+}
+.THIS .objectIcons svg{
+    width: 1.4rem !important;
+    height: 1.4rem !important;
+}
+.THIS .recordListBox {
+    margin-top:0px !important;
+    overflow-y: scroll;
+}
+.THIS .fullWidth {
+    width: 100% !important;
+}
+.THIS .verticalAlign {
+    cursor: pointer;
+    margin: 6px 0px 0px 6px!important;
+}
+
+
+/* For Scrolling */
+.THIS ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+.THIS ::-webkit-scrollbar-track {
+    display: none !important;
+}
+.THIS ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0,0,0,0.4);
+}
+.THIS .inputIcon{
+   z-index: 2!important;
+}
+.THIS .logCall{
+    float:right;
+    position:absolute;
+    bottom:15px;
+    right:16px;
+}
+.THIS .saveButton{
+    float:right;
+    position:absolute;
+    right:16px;
+    bottom:15px;
+    
+}
+.THIS .AddTaskButton{
+    float:right;
+    position:absolute;
+    right:16px;
+    bottom:30px;
+    
+}
+.THIS .Neweventbutton{
+    float:right;
+    position:absolute;
+    right:16px;
+    bottom:15px;
+    
+}
+.THIS .blueColor{
+   color:blue;
+}
+.THIS .TaskHover{
+    position:absolute;
+    right:200px;
+    bottom:36px;
+    color:grey;
+    
+}
+.THIS .btnhover:hover{
+    color: blue;
+}
+.THIS .dropListLast{
+    float:right;
+    position:absolute;
+    left:290px;
+    top:155px;
+    width:60%;
+}
+.THIS .dropDownListCc{
+    float:right;
+    position:absolute;
+    left:290px;
+    top:200px;
+    width:60%;
+}
+.THIS .dropDownListbc{
+    float:right;
+    position:absolute;
+    left:290px;
+    top:248px;
+    width:60%;
+}
+.THIS.hardCoded{
+    padding-left:20%;
+    padding-right:10%;  
+    
+}
+.THIS .AttachmentPortion:hover{
+    background-color: lightgrey;
+    text-decoration: underline;
+}
+.THIS .slds-file-selector__dropzone .slds-file-selector__text{
+    display: none !important;
+}
+
+.THIS .slds-file-selector__text .slds-medium-show {
+    display: none !important;
+}
+.THIS .changeMe {
+    background-color:Blue;
+}
+.THIS .newtwo:hover{
+    background-color: lightgrey;
+    text-decoration: underline;
+    z-index: 1!important;
+    
+}
+.THIS .buttonmenu{
+    
+    position:relative;
+    right:110%;
+}
+.THIS .GotItButton{
+    padding-left:45%;
+}
+.THIS .settingcss{
+    position:relative;
+    left:94%;
+    top:30%;
+}

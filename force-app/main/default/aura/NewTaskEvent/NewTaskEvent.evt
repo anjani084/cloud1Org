@@ -1,0 +1,6 @@
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="AssignedTo" type="String"/>
+    <aura:attribute name="SubjectTask" type="String"/>
+
+    
+</aura:event>

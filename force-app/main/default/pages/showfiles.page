@@ -1,0 +1,31 @@
+<apex:page >
+    <pre id="output"></pre>   
+    <script  type="text/javascript">
+     
+     var newWindow;
+    var lexOrigin ="https://cloudanalogy-f9-dev-ed.lightning.force.com";
+    
+    window.addEventListener("message", function (event) {
+        if (event.origin === lexOrigin) {
+            console.log(event.data+'event.data');
+            var receivedfromLWC = event.data;
+            var output = document.getElementById("output");
+            output.innerText =receivedfromLWC;
+             console.log(receivedfromLWC+'receivedfromLWC');
+            console.log(typeof receivedfromLWC);
+           
+                
+            newWindow= window.open();
+            
+            newWindow.document.write('<pre>'+receivedfromLWC+'</pre>');
+            
+            setTimeout(printPage,5000);
+            }
+    });
+    function printPage(){
+        newWindow.print();
+        // newWindow.close();
+    }
+    
+    </script>
+</apex:page>

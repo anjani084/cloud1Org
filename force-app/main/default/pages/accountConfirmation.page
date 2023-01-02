@@ -1,0 +1,24 @@
+<apex:page standardController="Account" extensions="Testnew" sidebar="true">
+    <apex:sectionHeader title="Account Edit" subtitle="New Account"/>
+    <apex:form >
+        <script>
+        function testingNew(){
+            var abcd = document.getElementById('{!$Component.thePageBlock.adadasd.nameId}').value;
+            return confirm('Are you sure want to save '+abcd);
+        }
+        </script>
+        <apex:pageBlock title="Account Edit" id="thePageBlock" >
+            <apex:pageBlockButtons >
+                <apex:pageMessages id="showmsg"></apex:pageMessages>
+                <apex:commandButton value="save" action="{!onsave}" onclick="return testingNew();" />
+                <apex:commandButton value="save&new" />
+                <apex:commandButton value="cancel"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Account Information" id="adadasd">
+                <apex:pageBlockSectionItem id="sectionId" > Owner {!$User.FirstName} {!$User.LastName}
+                </apex:pageBlockSectionItem>
+                <apex:inputfield value="{!acc.name}" id="nameId" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

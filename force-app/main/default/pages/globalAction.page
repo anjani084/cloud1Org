@@ -1,0 +1,8 @@
+<apex:page standardController="Account" recordSetVar="accounts">
+    <apex:includeLightning />
+        <div id="LightningComponentid" />    
+    <script>
+        $Lightning.use("c:helloLwc", function() {
+              $Lightning.createComponent("c:actionLwc",{},"LightningComponentid")});
+    </script>
+</apex:page>

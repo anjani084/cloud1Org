@@ -1,0 +1,68 @@
+<apex:page renderAs="pdf" applyBodyTag="false" standardController="Account">
+        <head>
+                <style type="text/css" media="print">
+                       @page {
+                                 @top-center {
+                                       content: element(header);
+                               }
+                               @bottom-left {
+                                     content: element(footer);
+                               }
+                            }
+                                     div.header {
+                                      padding: 10px;
+                                      position: running(header);
+                           }
+                       div.footer {
+                                display: block;
+                             padding: 5px;
+                               position: running(footer);
+                      }
+                                     .pagenumber:before {
+                                        content: counter(page);
+                       }
+                                   .pagecount:before {
+                             content: counter(pages);
+                        }
+                    </style>
+              </head>
+    <script>
+    function saveAsPDF() {
+            console.log('hllo1>');
+            html2canvas(document.getElementById("chart-container"), {
+                onrendered: function(canvas) {
+                   console.log('offsetHeight'+document.getElementById("chart-container").offsetHeight);
+                   const element = document.getElementById("chart-container");
+                    console.log('hllo2>');
+                   
+                   var opt = {
+                       margin:       0,
+                       filename:     'Vanderbloemen.pdf',
+                       image:        { type: 'jpeg', quality: 0.98 },
+                       html2canvas:  { scale: 2 },
+                       jsPDF:        { unit: 'in', format: 'b4', orientation: 'portrait' }
+                   };
+                    html2pdf().set(opt).from(element).save(); 
+                   
+               } 
+                
+            })
+        }
+    console.log('hllo3>');
+    </script>
+    <div id="chart-container">
+
+           <div class="header">
+              <div>Account name is: {!Account.name} ----------- and the date is {!TODAY()}hhhhhhhhhhhhhhhh
+               hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+               </div>
+           </div>
+    <button style="background: blue;color: white;font-size: 13px;" onclick="saveAsPDF()">Add Document as Attachment And Print</button>
+           <div class="footer" style="background-color:red">
+                <div>Page <span class="pagenumber"/> of <span class="pagecount"/></div>
+          </div>
+          <div class="content">
+               <p>Actual page body information.</p>
+          </div>
+    </div>
+</apex:page>

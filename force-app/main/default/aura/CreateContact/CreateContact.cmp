@@ -1,0 +1,19 @@
+<aura:component controller="Contactcreate" implements="force:appHostable,flexipage:availableForAllPageTypes"
+
+
+>
+   <aura:attribute name="contactdetails" type="Contact" default="{ 'sobjectType': 'Contact'}"/>
+
+    <div class="slds-p-left_large slds-p-right_large">
+	     <lightning:input required = "true" name="contactName" label="Contact last Name"
+                          placeholder="Last Name" value="{!v.contactdetails.LastName}"/>
+        <lightning:input type="Number" name="contactphone" label=" Phone number" value="{!v.contactdetails.Phone}"/>
+        <lightning:input type="Email" name="contactEmail" label="Email" value="{!v.contactdetails.Email}"/>
+       
+    </div>
+    <br/>
+    <div>
+     <lightning:button variant="brand" label="Insert Contact" title="Brand action" 
+                          onclick="{! c.InsertClick }" />
+        </div>
+</aura:component>

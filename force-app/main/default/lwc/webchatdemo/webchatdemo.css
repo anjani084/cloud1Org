@@ -1,0 +1,35 @@
+.THIS .slds-modal__header {
+    background: rgb(34, 5, 5);
+}
+
+.large {
+    height: 200px;
+}
+
+.custom-box {
+    text-align: center;
+    padding: 1rem;
+    max-width: 30%;
+    border: 1px solid #d8dde6;
+    background-color: #ffff;
+
+}
+
+.externaldiv {
+    height: 60%;
+    padding-top: 7%;
+    
+}
+
+.colourdiv {
+    background: #16325c;
+}
+
+.Scrollablediv {
+    height: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.OriginalShowButton{
+    height:20%;
+}

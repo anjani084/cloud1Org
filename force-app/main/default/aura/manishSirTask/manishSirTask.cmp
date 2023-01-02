@@ -1,0 +1,33 @@
+<aura:component >
+    
+    <aura:attribute name="valueForDiv" type="Integer" ></aura:attribute>
+    <aura:attribute name="valueForSum" type="Integer"></aura:attribute>
+    <aura:attribute name="imaginarySum" type="Integer"></aura:attribute>
+    <aura:attribute name="imaginary" type="boolean"></aura:attribute>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.numItems}" action="{!c.itemsChange}"/>
+     <aura:if isTrue="{!v.imaginary}">
+         {!v.imaginarySum}
+         
+  </aura:if> 
+	  <div class="c-container">
+        <lightning:layout multipleRows="true">
+            <lightning:layoutItem size="4" padding="around-small">
+                <div class="custom-box box" value="{!v.valueForDiv}" name="div1" data-id="1" aura:id="1" onclick="{!c.clickHandler}">1
+                </div>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small">
+                <div class="custom-box" value="{!v.valueForDiv}" data-id="2" name="div2" aura:id="2" onclick="{!c.clickHandler}">2</div>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small">
+                <div class="custom-box" value="{!v.valueForDiv}" data-id="3" name="div3" aura:id="3" onclick="{!c.clickHandler}">3</div>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small">
+                <div class="custom-box" name="div3" aura:id ="4">4</div>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small">
+                <div class="custom-box" name="div3" aura:id ="5">5</div>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>  
+</aura:component>

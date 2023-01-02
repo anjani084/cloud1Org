@@ -1,0 +1,15 @@
+<apex:page controller="vfPageBatchShow" >
+    <apex:form >
+        <apex:pageBlock title="Batch">
+            <apex:pageBlockTable value="{! MyMethod}" var="each">
+                <apex:Column value="{! each.Id}"/>
+                <apex:column value="{! each.CronJobDetail.Name}"/>
+                <apex:column value="{! each.CronExpression}"/>
+                <apex:facet name="header">
+                 <apex:commandLink action="{!deleteOperation}" value="Delete">
+        </apex:commandLink>
+                </apex:facet>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

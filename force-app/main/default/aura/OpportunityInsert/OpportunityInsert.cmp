@@ -1,0 +1,26 @@
+<aura:component controller="OpportunityStageName" implements="force:appHostable,flexipage:availableForAllPageTypes">
+    <aura:handler name="init" value="{!this}" action="{!c.ChangeAction}" />
+    <aura:attribute name="OppDetails" type="Opportunity" default="{'SobjectType' : 'Opportunity'}"/>
+    <aura:attribute name="StageName" type="List"/>
+    <div class="slds-p-around_small " >
+ 
+        <lightning:input required="true"  type="string" name="Name" aura:id="nameid" label="Opportunity Name" 
+                       placeholder="Opportunity Name" value="{!v.OppDetails.Name}"
+                           />
+        <lightning:input required="true" type="Date" name="CloseDate" aura:id="dateid" label="Close Date"
+                         placeholder="Close Date" value="{!v.OppDetails.CloseDate}" aria-invalid="true" />
+        <lightning:input name="AnnualRevenue" type="number" label="AnnualRevenue" 
+                              placeholder="Annual Revenue" value="{!v.OppDetails.AnnualRevenue}"/>
+        <lightning:select value="{!v.OppDetails.StageName}" name="StageName" required="true" label="Select Stage:" aura:id="oppId" >
+            <option text="None"/>
+            <aura:iteration items="{!v.StageName}" var="opp">
+                <option text="{!opp}" />
+            </aura:iteration>
+        </lightning:select><br/>
+    </div>
+    <lightning:button variant="brand" label="Insert Opportunity" title="Opportunity Insert" 
+                          onclick="{!c.myAction }" />
+    <lightning:button variant="brand" label="Clear" title="Clear" 
+                          onclick="{!c.thisAction }" />
+   
+</aura:component>

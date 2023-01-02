@@ -1,0 +1,119 @@
+<template>
+    <template if:true={showTabTwo}>
+        <lightning-layout multiple-rows="true" class="x-large externaldiv">
+            <lightning-layout-item flexibility="auto" style="background-color: white" padding="around-small" alignment-bump="left"
+                class="custom-box slds-box slds-p-around_medium slds-text-align_center backcolor">
+                <section role="log" class="slds-chat WholeSectionEdit">
+                    <ul class="slds-chat-list">
+                        <li class="slds-chat-listitem slds-chat-listitem_bookend colourdiv">
+                            <div class="slds-chat-bookend">
+
+                                <span class="slds-icon_container slds-icon-utility-chat slds-chat-icon">
+                                    <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#chat">
+                                        </use>
+                                    </svg>
+                                </span>
+
+                                <img style="color:#ffffff" src={ChatLogo}>
+                                <p style="color:#ffffff"><b>{UserName}</b>
+                                </p>
+                                <div style="color:#ffffff" class="slds-float_right">
+
+                                    <lightning-button-icon icon-name="utility:minimize_window" variant="container"
+                                        alternative-text="minimize_window" title="minimize_window"
+                                        onclick={handleClicktabminimize}>
+                                    </lightning-button-icon>
+                                    <lightning-button-icon icon-name="utility:close" variant="container" style="margin-right:-200%"
+                                        alternative-text="Settings" onclick={handleClicktabtwo} title="Settings">
+                                    </lightning-button-icon>
+                                </div>
+
+                            </div>
+                        </li>
+
+                        <div class="Scrollablediv">
+                            <template if:true={OriginalShowTempTrue}>
+                            <template for:each={chatList} for:item="each">
+                                <li key={each} class="slds-chat-listitem slds-chat-listitem_outbound">
+                                    <div class="slds-chat-message">
+                                        <div class="slds-chat-message__body">
+                                            <div class="slds-chat-message__text slds-chat-message__text_outbound-agent">
+                                                
+                                               
+                                                {each}
+
+                                            </div>
+                                            <span style="font-size: 10px;">
+                                            <p onclick={Originalshowbutton} data-value={each}><a href=" ">Original Show</a></p>
+                                            <p>{CurrentTime}</p>
+                                        </span>
+                                        </div>
+                                    </div>
+
+                                </li>
+                                
+                            </template>
+                            </template>
+
+
+                            <template if:false={OriginalShowTempTrue}>
+                                <template for:each={chatList2} for:item="each">
+                                    <li key={each} class="slds-chat-listitem slds-chat-listitem_outbound">
+                                        <div class="slds-chat-message">
+                                            <div class="slds-chat-message__body">
+                                                <div class="slds-chat-message__text slds-chat-message__text_outbound-agent">                                                   
+                                                    {each}
+
+                                                </div>
+                                                <span style="font-size: 10px;">
+                                                <p onclick={Originalhidebutton} data-value={each}><a href=" ">Original hide</a></p>
+                                                <p>{CurrentTime}</p>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </template>
+                                </template>
+                        </div>
+                    </ul>
+                    <div class="slds-chat-bookend slds-chat-bookend_stop colourdiv"></div>
+                    <div class="slds-p-around_medium lgc-bg">
+                        <lightning-input type="text" placeholder="Type Your Message..." value={Name}
+                            onkeypress={handleKeyPress} onchange={resetInput}></lightning-input>
+                    </div>
+
+                </section>
+            </lightning-layout-item>
+        </lightning-layout>
+    </template>
+    <template if:true={minimizePart}>
+        <lightning-layout multiple-rows="true" class="x-large" style="height:60%">
+            <lightning-layout-item flexibility="auto" padding="around-small" alignment-bump="left">
+                <div style="width:30%;float:right;padding-top:540px">
+                    <section role="log" class="slds-chat WholeSectionEdit" onclick={handleClicktabone}>
+                        <ul class="slds-chat-list">
+                            <div class="colourdiv">
+                                <li class="slds-chat-listitem slds-chat-listitem_bookend">
+                                    <div class="slds-chat-bookend">
+
+                                        <span class="slds-icon_container slds-icon-utility-chat slds-chat-icon">
+                                            <svg class="slds-icon slds-icon_x-small slds-icon-text-default"
+                                                aria-hidden="true">
+                                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#chat">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <img style="color:#ffffff" src={ChatLogo}>
+                                        <p><b>{UserName}</b>
+                                        </p>
+                                    </div>
+                                </li>
+                            </div>
+                        </ul>
+                    </section>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>
+    </template>
+</template>

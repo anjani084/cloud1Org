@@ -1,0 +1,23 @@
+.chasitor lightning-formatted-rich-text span a {
+    color: #FFF;
+}
+
+.url .ogpInfo .title,
+.url .ogpInfo .description {
+    -webkit-box-orient: vertical;
+}
+
+.richText ol,
+.richText ul {
+    padding-inline-start: 0 !important;
+}
+
+.richText ol li {
+    display: list-item !important;
+    list-style: decimal inside !important;
+}
+
+.richText ul li {
+    display: list-item !important;
+    list-style: disc inside !important;
+}

@@ -1,0 +1,17 @@
+<aura:component Controller="UserIdPassContact" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="Username" type="String"/>
+    <aura:attribute name="Password" type="String"/>                
+    
+       <div class="slds-p-top_none">
+            <form>
+                    <span>Please Enter Id and Password For Login</span>
+                
+                    <lightning:input label="Username" name="username" value="{!v.Username}" required="true" />
+                
+                    <lightning:input label="Password:" type="password" name="password"  value="{!v.Password}" required="true" />
+                
+                    <lightning:button variant="Brand" label="Login" onclick="{!c.userLogin}"/>
+            </form>
+        </div>
+</aura:component>

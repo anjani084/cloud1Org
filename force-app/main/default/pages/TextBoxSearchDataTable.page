@@ -1,0 +1,16 @@
+<apex:page controller="TextBoxSearchTableClass" >
+    <apex:form >
+        <apex:pageBlock title="search account">
+            <apex:inputText label="name" value="{!str}"/>
+            <apex:commandButton action="{!getInfofetch}" value="search"/>
+            <apex:pageBlockTable value="{!acclist}" var="ac">
+            <apex:column value="{!ac.name}"/>
+                <apex:column value="{!ac.phone}"/>
+                <apex:column value="{!ac.billingPostalCode}"/>
+                <apex:column value="{!ac.billingCity}"/>
+            
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

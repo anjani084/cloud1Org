@@ -1,0 +1,27 @@
+<aura:component controller="FindObjectAndField">
+   <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:attribute name="ObjName" type="List"/>
+    <aura:attribute name="SelectObj" type="String"/>
+    
+    <aura:attribute name="fieldname" type="List"/>
+    <aura:attribute name="fields" type="string"/>
+    
+    <aura:attribute name="fdt" type="string"/>
+    
+    <div class="slds-p-around_x-large">
+        <lightning:select name="objName" label="Select an object" value="{!v.SelectObj}" onchange="{!c.changeAction}" >
+            <option text="None"/>
+            <aura:iteration items="{!v.ObjName}" var="obb">
+            <option text="{!obb}"/>
+        </aura:iteration>
+        </lightning:select><br/>
+        <lightning:select name="fieldname" label="Fields of objects" value="{!v.fields}" onchange="{!c.newAction}">
+        <aura:iteration items="{!v.fieldname}" var="field">
+            <option text="{!field}"/>
+            </aura:iteration>
+        </lightning:select>
+        <lightning:input name="dataType" label="Field dataType" value="{!v.fdt}"></lightning:input>
+            
+        
+    </div>
+</aura:component>

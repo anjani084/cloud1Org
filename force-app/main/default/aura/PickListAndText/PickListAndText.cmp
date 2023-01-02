@@ -1,0 +1,35 @@
+<aura:component controller="Activitytask" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:attribute name="issubjectOpen" type="boolean" default="false"/>
+    <aura:attribute Name="SubjectListOfTask" type="List"/>
+    <aura:attribute Name="forIteration" type="List"/>
+    <aura:attribute Name="tempValue" type="String"/>
+    <aura:registerEvent name="sampleComponentEventSubject" type="c:NewTaskEvent"/>
+
+    
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    
+    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right">
+        <div class="slds-m-bottom_small">
+            <lightning:input type="search" label="Subject" aura:id="searchKey" value="{!v.tempValue}" onclick="{!c.Onclickhandler}" onchange="{!c.serchSubject}"/>
+        </div>
+        
+    </div>
+    
+    <aura:if isTrue="{!v.issubjectOpen}">
+        
+        <div class="slds-combobox_container slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open " aura:id="comboboxId">
+            <lightning:card>
+                <aura:Iteration items="{!v.forIteration}" var="var">
+                    
+                    <div style="cursor: pointer;" id="selectDiv" class="slds-text-link_reset" onclick="{!c.valueClicked}"  data-id="{!var}">
+                        {!var}</div>
+                    
+                </aura:Iteration>
+            </lightning:card>
+        </div>
+        
+    </aura:if>
+    
+</aura:component>

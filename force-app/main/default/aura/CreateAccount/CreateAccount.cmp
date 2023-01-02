@@ -1,0 +1,21 @@
+<aura:component controller="AccountCreate"  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+   <aura:attribute name="AccountDetails" type="Account" default="{ 'sobjectType': 'Account'}"/>
+
+    <div class="slds-p-left_large slds-p-right_large">
+         <lightning:notificationsLibrary aura:id="notifyId"/>
+	     <lightning:input required = "true" name="AccountName" label="Account Name"
+                      aura:id="nameId"    placeholder="Name" value="{!v.AccountDetails.Name}"/>
+        <lightning:input type="Number" name="AccountPhone" label="Phone number" value="{!v.AccountDetails.Phone}"/>
+        <lightning:input type="Text" name="Industry" label="Industry" value="{!v.AccountDetails.Industry}"/>
+        <lightning:input type="Text" name="Website" label="Website" value="{!v.AccountDetails.Website}"/>
+       <!-- <lightning:input type="Number" name="NumberOfEmployees" label="NumberOfEmployees" value="{!v.AccountDetails.NumberOfEmployees}"/>-->
+       
+
+    <br/>
+     <lightning:button variant="brand" label="Insert Account" title="Brand action" 
+                          onclick="{! c.InsertClick }" />
+     <lightning:button variant="brand" label="Cancel" title="Brand action" 
+                          onclick="{! c.CancelAction }" />
+            </div>
+
+</aura:component>

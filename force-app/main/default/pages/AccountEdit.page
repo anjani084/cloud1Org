@@ -1,0 +1,37 @@
+<apex:page standardController="Account">
+    <h1>
+        Edit Account
+    </h1>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageMessages ></apex:pageMessages>
+            <apex:pageBlockSection columns="1">
+                  <apex:inputField value="{!Account.name}"/>
+                  <apex:inputField value="{!Account.Phone}"/>
+                  <apex:inputField value="{!Account.AnnualRevenue}"/>
+                  <apex:inputField value="{!Account.Industry}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection >
+                  <apex:commandButton action="{!Save}" value="Save" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock title="Contacts">
+    <apex:pageBlockTable value="{!Account.contacts}" var="contact">
+        <apex:column >
+            <apex:outputLink value="{! URLFOR($Action.Contact.Edit, contact.Id) }">
+                Edit
+            </apex:outputLink>
+            &nbsp;
+            <apex:outputLink value="{! URLFOR($Action.Contact.Delete, contact.Id) }">
+                Del
+            </apex:outputLink>
+        </apex:column>
+        <apex:column value="{!contact.Name}"/>
+        <apex:column value="{!contact.Title}"/>
+        <apex:column value="{!contact.Phone}"/>
+    </apex:pageBlockTable>
+</apex:pageBlock>
+A list of the account’s contacts appears below the 
+    </apex:form>
+    
+</apex:page>

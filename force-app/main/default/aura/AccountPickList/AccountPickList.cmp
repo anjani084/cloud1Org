@@ -1,0 +1,29 @@
+<aura:component controller="AccountPickList">
+	<aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <aura:attribute name="accOption" type="List" />
+    <aura:attribute name="selectedAccount" type="String" />
+    
+    <aura:attribute name="conOption" type="List" />
+    <aura:attribute name="selectedContact" type="String" />
+    
+    <aura:attribute name="oppOption" type="List"/>
+    <aura:attribute name="selectedOpportunity" type="String"/>
+
+    <div class="slds-p-around_x-large">
+        <lightning:select name="acc" label="Select a Account:" aura:id="accId" value="{!v.selectedAccount}" onchange="{!c.changeAction}">
+            <aura:iteration items="{!v.accOption}" var="opt">
+                <option text="{!opt.Name}" value="{!opt.Id}" selected="{!opt.selected}"/>
+            </aura:iteration>
+        </lightning:select><br/>
+        <lightning:select name="con" label="Select a Contact:" aura:id="con" value="{!v.selectedContact}" >
+            <aura:iteration items="{!v.conOption}" var="opt">
+                <option text="{!opt.LastName}" value="{!opt.LastName}" selected="{!opt.selected}"/>
+            </aura:iteration>
+        </lightning:select>
+         <lightning:select name="opp" label="Select an Opportunity:" aura:id="opp" value="{!v.selectedOpportunity}">
+            <aura:iteration items="{!v.oppOption}" var="opt">
+                <option text="{!opt.Name}" value="{!opt.Name}" selected="{!opt.selected}"/>
+            </aura:iteration>
+        </lightning:select>
+    </div>
+</aura:component>

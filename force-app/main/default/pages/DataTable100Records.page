@@ -1,0 +1,10 @@
+<apex:page Controller="Contact100records">
+    <apex:form >
+    <apex:pageBlock title="Contact having 100 records" id="contacts_list">
+        <apex:pageblockTable value="{! FetchInfo}" var="ct">
+            <apex:Column value="{! ct.Name}"/>
+            <apex:column value="{! ct.CreatedDate}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+        </apex:form>
+</apex:page>
